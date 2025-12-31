@@ -15,23 +15,28 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Allow requests from frontend (multiple ports for Vite)
+        // Allow requests from the frontend
         configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:3000",
-            "http://localhost:5173",
-            "http://localhost:5174"
+            "http://localhost:5173", 
+            "http://localhost:5174",
+            "http://localhost:3000"
         ));
         
         // Allow all HTTP methods
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList(
+            "GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"
+        ));
         
         // Allow all headers
         configuration.setAllowedHeaders(Arrays.asList("*"));
         
-        // Allow credentials
+        // Allow credentials (cookies, authorization headers)
         configuration.setAllowCredentials(true);
         
-        // Apply configuration to all endpoints
+        // How long the response from a pre-flight request can be cached
+        configuration.setMaxAge(3600L);
+        
+        // Apply this configuration to all endpoints
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         
