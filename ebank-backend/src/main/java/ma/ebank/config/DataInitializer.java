@@ -26,8 +26,8 @@ public class DataInitializer {
                 user.setFirstname("Agent");
                 user.setLastname("Ebank");
                 user.setEmail("agent1@ebank.com");
+                user.setRole("AGENT_GUICHET");
 
-                
                 user.setEnabled(true);
                 user.setAccountNonExpired(true);
                 user.setAccountNonLocked(true);
@@ -35,7 +35,7 @@ public class DataInitializer {
 
                 userRepository.save(user);
 
-                System.out.println("Default user 'agent1' created");
+                System.out.println("Default user 'agent1' created with role AGENT_GUICHET");
             } else {
                 System.out.println("User 'agent1' already exists");
             }

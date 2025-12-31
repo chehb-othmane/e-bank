@@ -28,10 +28,13 @@ public class User {
     @Column(unique = true)
     protected String email;
 
+    @Column(nullable = false)
+    protected String role; // CLIENT or AGENT_GUICHET
+
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;
 
-    // champs utiles pour Spring Security (plus tard)
+    // champs utiles pour Spring Security
     protected boolean enabled = true;
     protected boolean accountNonExpired = true;
     protected boolean accountNonLocked = true;

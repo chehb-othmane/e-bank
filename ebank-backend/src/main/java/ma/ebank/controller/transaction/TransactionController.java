@@ -3,6 +3,7 @@ package ma.ebank.controller.transaction;
 import lombok.RequiredArgsConstructor;
 import ma.ebank.service.interfaces.TransactionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -16,6 +17,7 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @PostMapping("/transfer")
+    @PreAuthorize("hasRole('CLIENT')")
     public ResponseEntity<?> transfer(
             @RequestBody Map<String, Object> request,
             Principal principal

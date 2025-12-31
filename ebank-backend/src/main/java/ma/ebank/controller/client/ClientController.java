@@ -1,9 +1,10 @@
 package ma.ebank.controller.client;
 
 import lombok.RequiredArgsConstructor;
-import ma.ebank.model.Client;
+import ma.ebank.dto.client.ClientDTO;
 import ma.ebank.service.interfaces.ClientService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +15,8 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
-    public ResponseEntity<Client> createClient(@RequestBody Client client) {
-        return ResponseEntity.ok(clientService.createClient(client));
+    @PreAuthorize("hasRole('AGENT_GUICHET')")
+    public ResponseEntity<ClientDTO> createClient(@RequestBody ClientDTO clientDTO) {
+        return ResponseEntity.ok(clientService.createClient(clientDTO));
     }
 }
