@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Autofill dark mode fix */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #1c2127 inset !important;
+  -webkit-text-fill-color: white !important;
+}
